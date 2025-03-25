@@ -4,7 +4,9 @@
 It streamlines the process of finding, installing, removing, and upgrading packages across multiple package formats with a single command.
 
 <a href="https://aur.archlinux.org/packages/paxs" alt="AUR Badge">
-        <img src="https://img.shields.io/aur/version/paxs" /></a>
+        <img src="https://img.shields.io/aur/version/paxs?logo=archlinux" /></a>
+<a href="https://github.com/tldr-pages/tldr/blob/main/pages/linux/paxs.md" alt="tldr-pages Badge">
+        <img src="https://img.shields.io/badge/tldr-v2.3%2B-lightgrey">
 
 ### Installation
 **Dependencies:** yay, flatpak, snapd
