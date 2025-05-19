@@ -1,26 +1,31 @@
 # Maintainer: Zamhedonia <zamhedonia@gmx.de>
-pkgname=paxs
-pkgver=0.1
+pkgname=doomlauncher
+pkgver=1.1
 pkgrel=1
-pkgdesc="A script for managing packages across Yay, Flatpak, and Snap"
+pkgdesc="Simple terminal launcher for GZDoom with dialog UI"
 arch=('any')
-url="https://github.com/zamhedonia/paxs"
-license=('GPL-3.0')
-depends=('yay' 'flatpak' 'snapd')
-source=("https://github.com/zamhedonia/paxs/archive/refs/tags/v${pkgver}.tar.gz"
-        "paxs.1")
-sha256sums=('8005d31c8d3d8fdab0141dc53ad8a6b63059da07f2cf66d6369e3d49021f74a2'
-            '088c3a3d21b3c053917c6160e4964c3c9554cb59223f6a025ee13f60fb8ab93b')
+url="https://github.com/zamhedonia/doomlauncher"
+license=('MIT')
+depends=('dialog')
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/zamhedonia/doomlauncher/archive/refs/tags/v${pkgver}.tar.gz")
+sha256sums=('d2e30af0f2abb4e81e1e33ec631e9ba1914842a54f10e475eb289a6811bc1990')
 
 package() {
-  cd "$srcdir/paxs-${pkgver}"
+    cd "${srcdir}/${pkgname}-${pkgver}"
 
-  # Install the main script
-  install -Dm755 paxs "$pkgdir/usr/bin/paxs"
+    # Install main script
+    install -Dm755 doomlauncher.sh "${pkgdir}/usr/bin/doomlauncher"
 
-  # Install the LICENSE file
-  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    # Install the LICENSE file
+    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 
-  # Install the manual page
-  install -Dm644 paxs.1 "$pkgdir/usr/share/man/man1/paxs.1"
+    # Install config andtheme
+    install -Dm644 doomlauncher.cfg "${pkgdir}/etc/doomlauncher/doomlauncher.cfg"
+    install -Dm644 doomlauncher_theme.rc "${pkgdir}/etc/doomlauncher/doomlauncher_theme.rc"
+
+    # Install icon
+    install -Dm644 doomlauncher.svg "${pkgdir}/usr/share/icons/hicolor/scalable/apps/doomlauncher.svg"
+
+    # Install desktop entry
+    install -Dm644 doomlauncher.desktop "${pkgdir}/usr/share/applications/doomlauncher.desktop"
 }
